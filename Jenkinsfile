@@ -1,6 +1,7 @@
 pipeline {
+    notify('started')
     agent any
-
+  
     stages {
         stage ('Compile Stage') {
 
@@ -28,5 +29,15 @@ pipeline {
                 }
             }
         }
+    }
+    
+    def notify(status){
+    emailext(
+       to: "manee2k6@gmail.com",
+        subject: "${status}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+        body: """<p> ${status}: Job '${env.JOBE_NAME} [${env.BUILD_NUMBER}]':</p>
+           <p>Check console Output at <a href ='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a></p>
+    )    
+    
     }
 }

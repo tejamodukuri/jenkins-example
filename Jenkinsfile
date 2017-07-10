@@ -6,7 +6,7 @@ pipeline {
         stage ('Compile Stage') {
 
             steps {
-                withMaven(maven : 'maven_3_5_0') {
+                withMaven(jdk: 'jdk1.8.0_131', maven: 'maven-3.5.0') {
                     bat 'mvn clean compile'
                 }
             }
@@ -15,7 +15,7 @@ pipeline {
         stage ('Testing Stage') {
 
             steps {
-                withMaven(maven : 'maven_3_5_0') {
+                withMaven(jdk: 'jdk1.8.0_131', maven: 'maven-3.5.0') {
                     bat 'mvn test'
                 }
             }
@@ -24,7 +24,7 @@ pipeline {
 
         stage ('Deployment Stage') {
             steps {
-                withMaven(maven : 'maven_3_5_0') {
+                withMaven(jdk: 'jdk1.8.0_131', maven: 'maven-3.5.0') {
                     bat 'mvn deploy'
                 }
             }
